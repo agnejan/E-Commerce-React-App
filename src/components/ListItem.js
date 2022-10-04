@@ -4,7 +4,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea, CardActions } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export default function ListItem(props) {
   const product = props.product;
@@ -21,13 +22,16 @@ export default function ListItem(props) {
           <Typography gutterBottom variant="h5" component="div">
             {product.title}
           </Typography>
+          <Typography variant="body2" color="text.secondary" noWrap="true">
+            ${product.description}
+          </Typography>
           <Typography variant="body2" color="text.secondary">
             ${product.price}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button variant="contained" size="small" fullWidth="true">
           Details
         </Button>
       </CardActions>
