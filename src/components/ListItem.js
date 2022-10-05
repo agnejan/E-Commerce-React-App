@@ -13,17 +13,24 @@ export default function ListItem(props) {
     <Card raised={true} sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
-          component="img"
-          height="140"
-          image={product.image}
-          alt="green iguana"
-        />
+        // component="img"
+        // height="300"
+        // objectFit="fit"
+        // image={product.image}
+        // alt={product.title}
+        >
+          <img
+            srcSet={product.image}
+            style={{ height: 200, objectFit: "cover" }}
+          ></img>
+        </CardMedia>
+
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" noWrap="true">
             {product.title}
           </Typography>
           <Typography variant="body2" color="text.secondary" noWrap="true">
-            ${product.description}
+            {product.description}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             ${product.price}
@@ -38,18 +45,3 @@ export default function ListItem(props) {
     </Card>
   );
 }
-
-// function ListItem(props) {
-//   const product = props.product;
-
-//   return (
-//     <div>
-//       <h3>{product.title}</h3>
-//       <p>{product.price}</p>
-//       <img srcSet={product.image}></img>
-//       <button onClick={props.handlePopUp}>More Details</button>
-//     </div>
-//   );
-// }
-
-// export default ListItem;

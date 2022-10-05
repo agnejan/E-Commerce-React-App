@@ -1,0 +1,8 @@
+.image {
+  height: auto;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}

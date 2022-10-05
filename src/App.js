@@ -3,7 +3,10 @@ import "./App.css";
 import ProductList from "./pages/ProductList";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Blog from "./pages/Blog";
+import Home from "./pages/Home";
+import ProductDetail from "./pages/ProductDetail";
 
 const theme = createTheme({
   palette: {
@@ -20,16 +23,20 @@ const theme = createTheme({
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <div className="App">
           <NavBar />
-          {/* <div style={{ marginTop: 20 }}></div> */}
-          <ProductList />
-          <p>Footer</p>
+          <Routes>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/products" element={<ProductList />}></Route>
+            <Route path="/productdetail" element={<ProductDetail />}></Route>
+            <Route path="/blog" element={<Blog />}></Route>
+          </Routes>
+          <p>**Footer placeholder**</p>
         </div>
       </ThemeProvider>
-    </Router>
+    </BrowserRouter>
   );
 }
 
