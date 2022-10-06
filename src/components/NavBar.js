@@ -51,7 +51,8 @@ const NavBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component={Link}
+            to={"/products"}
             href="/"
             sx={{
               mr: 2,
@@ -114,7 +115,8 @@ const NavBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
+            component={Link}
+            to={"/products"}
             href=""
             sx={{
               mr: 2,

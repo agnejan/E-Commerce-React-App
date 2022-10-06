@@ -6,6 +6,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+
+// import Badge from "@mui/material/Badge";
 
 export default function ListItem(props) {
   const product = props.product;
@@ -19,10 +22,12 @@ export default function ListItem(props) {
         // image={product.image}
         // alt={product.title}
         >
+          {/* <Badge badgeContent={product.category} color="info" anchorOrigin={vertical:'bottom', horizontal:'left'}> */}
           <img
             srcSet={product.image}
             style={{ height: 200, objectFit: "cover" }}
           ></img>
+          {/* </Badge> */}
         </CardMedia>
 
         <CardContent>
@@ -32,13 +37,24 @@ export default function ListItem(props) {
           <Typography variant="body2" color="text.secondary" noWrap="true">
             {product.description}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            style={{ fontWeight: "bold" }}
+          >
             ${product.price}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="contained" size="small" fullWidth="true">
+        <Button
+          component={Link}
+          to={`/productdetail/${product.id}`}
+          variant="contained"
+          size="small"
+          fullWidth="true"
+          color="secondary"
+        >
           Details
         </Button>
       </CardActions>

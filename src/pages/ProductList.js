@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 
 function ProductList() {
   const [products, setProducts] = useState();
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("https://fakestoreapi.com/products");
@@ -17,10 +17,10 @@ function ProductList() {
     fetchData();
   }, []);
 
-  const handlePopUp = (e) => {
-    console.log(e);
-    setShow(true);
-  };
+  // const handlePopUp = (e) => {
+  //   console.log(e);
+  //   setShow(true);
+  // };
 
   return (
     <div>
@@ -38,7 +38,7 @@ function ProductList() {
                   display="flex"
                   justifyContent="center"
                 >
-                  <ListItem handlePopUp={handlePopUp} product={product} />
+                  <ListItem product={product} />
                 </Grid>
               );
             })}
