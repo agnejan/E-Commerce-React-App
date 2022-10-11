@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import LikeButton from "./LikeButton";
 
 // import Badge from "@mui/material/Badge";
 
@@ -31,10 +32,10 @@ export default function ListItem(props) {
         </CardMedia>
 
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" noWrap="true">
+          <Typography gutterBottom variant="h5" component="div" noWrap={true}>
             {product.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" noWrap="true">
+          <Typography variant="body2" color="text.secondary" noWrap={true}>
             {product.description}
           </Typography>
           <Typography
@@ -52,11 +53,12 @@ export default function ListItem(props) {
           to={`/productdetail/${product.id}`}
           variant="contained"
           size="small"
-          fullWidth="true"
+          fullWidth={true}
           color="secondary"
         >
           Details
         </Button>
+        <LikeButton></LikeButton>
       </CardActions>
     </Card>
   );

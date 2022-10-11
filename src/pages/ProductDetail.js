@@ -19,7 +19,7 @@ function ProductDetail() {
     const fetchData = async () => {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setProducts(data);
     };
 
@@ -51,6 +51,11 @@ function ProductDetail() {
             justifyContent="center"
           >
             <div className="details">
+              <Chip
+                label={products.category}
+                color="info"
+                style={{ width: "40%" }}
+              />
               <h1>{products.title}</h1>
               <Typography component="legend">Rating:</Typography>
               <Rating
@@ -60,16 +65,8 @@ function ProductDetail() {
                   setValue(newValue);
                 }}
               />
-
               <h3>Price: ${products.price}</h3>
-
               <p style={{ fontWeight: "lighter" }}>{products.description}</p>
-              <Chip
-                label={products.category}
-                color="info"
-                width="50%"
-                style={{ marginBottom: 20 }}
-              />
 
               <Button variant="contained" style={{ width: "50%" }}>
                 Add to Cart <AddShoppingCartIcon></AddShoppingCartIcon>

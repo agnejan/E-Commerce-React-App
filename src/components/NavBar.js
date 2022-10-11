@@ -52,7 +52,7 @@ const NavBar = () => {
             variant="h6"
             noWrap
             component={Link}
-            to={"/products"}
+            to={"/home"}
             href="/"
             sx={{
               mr: 2,
@@ -116,7 +116,7 @@ const NavBar = () => {
             variant="h5"
             noWrap
             component={Link}
-            to={"/products"}
+            to={"/home"}
             href=""
             sx={{
               mr: 2,

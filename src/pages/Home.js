@@ -1,12 +1,38 @@
 import React from "react";
-import ConstructionIcon from "@mui/icons-material/Construction";
+import FilterBox from "../components/FilterBox";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import ProductList from "./ProductList";
 
-function Home() {
+function Home({ filterCategory }) {
+  // const [filterValue, setFilterValue] = useState("all");
+  // const [filterApplied, setFilterApplied] = useState(false);
+
+  // const filterCategory = (category) => {
+  //   console.log(category);
+  //   setFilterValue(category);
+  //   setFilterApplied(true);
+  //   // return <ProductList filterValue={filterCategory}></ProductList>;
+  // };
+
+  // const handleClick = () => {
+  //   console.log();
+  //   return <ProductList></ProductList>;
+  // };
+
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Oops! This site is still under construction...</p>
-      <ConstructionIcon fontSize="large" color="error" />
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <FilterBox
+        component={Link}
+        to={"/products"}
+        handleClick={filterCategory}
+      ></FilterBox>
     </div>
   );
 }
