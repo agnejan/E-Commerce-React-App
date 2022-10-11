@@ -14,17 +14,29 @@ import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { deepPurple } from "@mui/material/colors";
 import { Link } from "react-router-dom";
+import { LogInContext } from "../context/logInContext";
+import { useContext } from "react";
 
 const pages = [
   { text: "Home", route: "/home" },
   { text: "Products", route: "/products" },
   { text: "Blog", route: "/blog" },
 ];
-const settings = ["Log In", "Sign Up", "Profile", "Logout"];
+const settingsLoggedIn = [
+  { text: "Profile", route: "/profile" },
+  { text: "My wishlist", route: "/wishlist" },
+  { text: "Logout", route: "/logout" },
+];
+
+const settingsNotLoggedIn = [
+  { text: "Log In", route: "/login" },
+  { text: "Sign Up", route: "/signup" },
+];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { loggedIn } = useContext(LogInContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -151,7 +163,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{ bgcolour: deepPurple[300] }}>AJ</Avatar>
+                <Avatar sx={{ bgcolour: "secondary" }}>AJ</Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -170,11 +182,39 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              {loggedIn
+                ? settingsLoggedIn.map((setting) => (
+                    <Link
+                      key={setting.text}
+                      to={setting.route}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem
+                        key={setting.text}
+                        onClick={handleCloseUserMenu}
+                      >
+                        <Typography textAlign="center">
+                          {setting.text}
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                  ))
+                : settingsNotLoggedIn.map((setting) => (
+                    <Link
+                      key={setting.text}
+                      to={setting.route}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem
+                        key={setting.text}
+                        onClick={handleCloseUserMenu}
+                      >
+                        <Typography textAlign="center">
+                          {setting.text}
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                  ))}
             </Menu>
           </Box>
         </Toolbar>

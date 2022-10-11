@@ -3,17 +3,19 @@ import "../styling/productDetail.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Chip from "@mui/material/Chip";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import { LogInContext } from "../context/logInContext";
 
 function ProductDetail() {
   let { id } = useParams();
   const [products, setProducts] = useState();
-  const [value, setValue] = React.useState(2);
+  const [ratingValue, setRatingValue] = React.useState(2);
+  const { loggedIn } = useContext(LogInContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,15 +64,17 @@ function ProductDetail() {
                 name="simple-controlled"
                 value={products.rating.rate}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setRatingValue(newValue);
                 }}
               />
               <h3>Price: ${products.price}</h3>
               <p style={{ fontWeight: "lighter" }}>{products.description}</p>
 
-              <Button variant="contained" style={{ width: "50%" }}>
-                Add to Cart <AddShoppingCartIcon></AddShoppingCartIcon>
-              </Button>
+              {loggedIn && (
+                <Button variant="contained" style={{ width: "50%" }}>
+                  Add to Cart <AddShoppingCartIcon></AddShoppingCartIcon>
+                </Button>
+              )}
             </div>
           </Grid>
         </Grid>

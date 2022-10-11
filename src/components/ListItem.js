@@ -8,11 +8,17 @@ import { CardActionArea, CardActions } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
+import { WishlistContext } from "../context/wishlistContext";
+import { useContext } from "react";
 
 // import Badge from "@mui/material/Badge";
 
 export default function ListItem(props) {
+  const onClick = () => {
+    console.log("heart clicked");
+  };
   const product = props.product;
+  const { addToWishlist } = useContext(WishlistContext);
   return (
     <Card raised={true} sx={{ maxWidth: 345 }}>
       <CardActionArea>

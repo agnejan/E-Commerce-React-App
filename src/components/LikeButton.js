@@ -12,6 +12,9 @@ export default function LikeButton() {
         {...label}
         icon={<FavoriteBorder />}
         checkedIcon={<Favorite />}
+        onChange={() => {
+          console.log("wishlisted");
+        }}
       />
     </div>
   );

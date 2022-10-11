@@ -1,10 +1,12 @@
 import React from "react";
 import FilterBox from "../components/FilterBox";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import ProductList from "./ProductList";
+import { useContext } from "react";
+// import ProductList from "./ProductList";
+import { FilterContext } from "../context/filterContext";
 
-function Home({ filterCategory }) {
+function Home() {
+  const { filterCategory } = useContext(FilterContext);
   // const [filterValue, setFilterValue] = useState("all");
   // const [filterApplied, setFilterApplied] = useState(false);
 
