@@ -14,21 +14,27 @@ import { useContext } from "react";
 // import Badge from "@mui/material/Badge";
 
 export default function ListItem(props) {
-  const onClick = () => {
-    console.log("heart clicked");
-  };
   const product = props.product;
-  const { addToWishlist } = useContext(WishlistContext);
+
+  const { addToWishlist, wishListedProducts } = useContext(WishlistContext);
+
+  const isWishListed = () => {
+    // console.log(product);
+    const wished = wishListedProducts.filter((item) => item.id === product.id);
+    // console.log(wished);
+    return wished.length ? true : false;
+  };
+
+  const handleAddToWishlist = () => {
+    addToWishlist(product);
+  };
+
+  // console.log(isWishListed());
+
   return (
     <Card raised={true} sx={{ maxWidth: 345 }}>
       <CardActionArea>
-        <CardMedia
-        // component="img"
-        // height="300"
-        // objectFit="fit"
-        // image={product.image}
-        // alt={product.title}
-        >
+        <CardMedia>
           {/* <Badge badgeContent={product.category} color="info" anchorOrigin={vertical:'bottom', horizontal:'left'}> */}
           <img
             srcSet={product.image}
@@ -57,6 +63,7 @@ export default function ListItem(props) {
         <Button
           component={Link}
           to={`/productdetail/${product.id}`}
+          id={product.id}
           variant="contained"
           size="small"
           fullWidth={true}
@@ -64,7 +71,10 @@ export default function ListItem(props) {
         >
           Details
         </Button>
-        <LikeButton></LikeButton>
+        <LikeButton
+          onChange={handleAddToWishlist}
+          checked={isWishListed()}
+        ></LikeButton>
       </CardActions>
     </Card>
   );

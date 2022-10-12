@@ -6,7 +6,7 @@ export const LogInContextProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const logInSwitch = () => {
-    setLoggedIn((current) => !current);
+    setLoggedIn(!loggedIn);
     console.log(loggedIn);
   };
 

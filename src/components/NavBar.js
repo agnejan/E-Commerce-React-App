@@ -54,7 +54,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" style={{}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ShoppingBasketIcon

@@ -54,7 +54,7 @@ function App() {
               <ThemeProvider theme={theme}>
                 <div className="App">
                   <NavBar />
-                  <ToggleButton />
+                  {/* <ToggleButton /> */}
                   <Routes>
                     <Route
                       path="/home"
