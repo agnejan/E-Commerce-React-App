@@ -15,20 +15,19 @@ import { useState, useContext } from "react";
 import { LogInContext } from "../context/logInContext";
 
 function Login() {
-  // MUI CODE
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
+  // MUI PASSWORD CODE
+  // const [values, setValues] = React.useState({
+  //   amount: "",
+  //   password: "",
+  //   weight: "",
+  //   weightRange: "",
+  //   showPassword: false,
+  // });
 
+  // const handleChange = (prop) => (event) => {
+  //   setValues({ ...values, [prop]: event.target.value });
+  // };
   const navigate = useNavigate();
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -42,7 +41,7 @@ function Login() {
 
   const { logIn, user, errorMessage } = useContext(LogInContext);
 
-  // can add useeffect if user --> navigate to profile
+  // can add useeffect if user(true) --> navigate to profile
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,13 +57,10 @@ function Login() {
 
   const handleLogIn = async () => {
     const success = await logIn(email, password);
-    console.log(success);
-    console.log("test");
     if (success) {
       navigate("/profile");
     }
   };
-  console.log(values);
   return (
     <div
       style={{
@@ -127,8 +123,12 @@ function Login() {
         <Button variant="contained" color="primary" onClick={handleLogIn}>
           LOG IN
         </Button>
-        {errorMessage ? <p>{errorMessage}</p> : <p></p>}
       </Box>
+      {errorMessage ? (
+        <p style={{ color: "red" }}> {errorMessage} 😢</p>
+      ) : (
+        <p></p>
+      )}
       <p>
         Don't have an account yet?{" "}
         <Link

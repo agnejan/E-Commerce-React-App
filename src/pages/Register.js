@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import { flexbox } from "@mui/system";
 import { useState, useContext } from "react";
 import { LogInContext } from "../context/logInContext";
+import { Style } from "@mui/icons-material";
 
 function Register() {
   // MATERIAL UI PASSWORD CODE
@@ -27,22 +28,20 @@ function Register() {
   //   setValues({ ...values, [prop]: event.target.value });
   // };
 
-  // const handleClickShowPassword = () => {
-  //   setValues({
-  //     ...values,
-  //     showPassword: !values.showPassword,
-  //   });
-  // };
+  const handleClickShowPassword = () => {
+    setShowPassowrd(!showPassword);
+  };
 
-  // const handleMouseDownPassword = (event) => {
-  //   event.preventDefault();
-  // };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   //REGISTRATION
-  const { registerNewUser } = useContext(LogInContext);
+  const { registerNewUser, errorMessage } = useContext(LogInContext);
 
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [showPassword, setShowPassowrd] = useState("");
   const [registerUsername, setRegisterUsername] = useState("");
 
   const handleEmailChange = (e) => {
@@ -93,15 +92,15 @@ function Register() {
           value={registerEmail}
           onChange={handleEmailChange}
         />
-        <TextField
+        {/* <TextField
           id="outlined-basic"
           label="Your password"
           variant="outlined"
           color="action"
           value={registerPassword}
           onChange={handlePasswordChange}
-        />
-        {/* <FormControl
+        /> */}
+        <FormControl
           sx={{ m: 1, width: "25ch" }}
           variant="outlined"
           color="action"
@@ -111,14 +110,9 @@ function Register() {
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={
-              (handleChange("password"),
-              (e) => {
-                setRegisterEmail(e.target.value);
-              })
-            }
+            type={showPassword ? "text" : "password"}
+            value={registerPassword}
+            onChange={handlePasswordChange}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -127,13 +121,13 @@ function Register() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
             label="Choose a password"
           />
-        </FormControl> */}
+        </FormControl>
         <Button
           variant="contained"
           color="primary"
@@ -142,6 +136,11 @@ function Register() {
           REGISTER
         </Button>
       </Box>
+      {errorMessage ? (
+        <p style={{ color: "red" }}> {errorMessage} 😢 Try again!</p>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }

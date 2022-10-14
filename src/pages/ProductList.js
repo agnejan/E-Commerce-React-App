@@ -31,32 +31,25 @@ function ProductList() {
       </Button>
       <Box sx={{ flexGrow: 1, marginTop: 3 }}>
         <Grid container spacing={3}>
-          {products && // && means if character === true, it waits for products to be fetched before it maps them
+          {filteredProduct ? (
             filteredProduct.map((product) => {
-              console.log(product);
-              if (!product) {
-                return (
-                  <div>
-                    Sorry, we don't seem to have anything to offer on this
-                    category
-                  </div>
-                );
-              } else {
-                return (
-                  <Grid
-                    key={product.id}
-                    item
-                    xs={12}
-                    sm={6}
-                    md={3}
-                    display="flex"
-                    justifyContent="center"
-                  >
-                    <ListItem product={product} />
-                  </Grid>
-                );
-              }
-            })}
+              return (
+                <Grid
+                  key={product.id}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={3}
+                  display="flex"
+                  justifyContent="center"
+                >
+                  <ListItem product={product} />
+                </Grid>
+              );
+            })
+          ) : (
+            <p>Sorry</p>
+          )}
         </Grid>
       </Box>
     </div>
