@@ -11,12 +11,15 @@ import Footer from "./components/Footer";
 import { ProductsContextProvider } from "./context/productsContext";
 import { FilterContextProvider } from "./context/filterContext";
 import ToggleButton from "./components/ToggleButton";
-import { LogInContextProvider } from "./context/logInContext";
+import { useContext } from "react";
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
+import Register from "./pages/Register";
+import Logout from "./pages/Logout";
 import { WishlistContextProvider } from "./context/wishlistContext";
+import { LogInContextProvider } from "./context/logInContext";
+import { LogInContext } from "./context/logInContext";
 
 const theme = createTheme({
   palette: {
@@ -36,6 +39,7 @@ const theme = createTheme({
 });
 
 function App() {
+  // const { logOut, auth, user } = useContext(LogInContext);
   // const [filterValue, setFilterValue] = useState("all");
   // // const [filterApplied, setFilterApplied] = useState(false);
 
@@ -44,7 +48,11 @@ function App() {
   //   setFilterValue(category);
   //   // setFilterApplied(true);
   // };
-
+  // const handleLogOut = () => {
+  //   logOut();
+  //   console.log(user);
+  //   console.log(auth);
+  // };
   return (
     <WishlistContextProvider>
       <LogInContextProvider>
@@ -72,8 +80,9 @@ function App() {
                     <Route path="/wishlist" element={<Wishlist />}></Route>
                     <Route path="/blog" element={<Blog />}></Route>
                     <Route path="/login" element={<Login />}></Route>
-                    <Route path="/signup" element={<Signup />}></Route>
+                    <Route path="/register" element={<Register />}></Route>
                     <Route path="/profile" element={<Profile />}></Route>
+                    <Route path="/logout" element={<Logout />}></Route>
                   </Routes>
                   <Footer />
                 </div>

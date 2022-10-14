@@ -10,68 +10,62 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
 import { flexbox } from "@mui/system";
-import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { LogInContext } from "../context/logInContext";
 
-function Login() {
-  // MUI CODE
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
+function Register() {
+  // MATERIAL UI PASSWORD CODE
+  // const [values, setValues] = React.useState({
+  //   amount: "",
+  //   password: "",
+  //   weight: "",
+  //   weightRange: "",
+  //   showPassword: false,
+  // });
 
-  const navigate = useNavigate();
+  // const handleChange = (prop) => (event) => {
+  //   setValues({ ...values, [prop]: event.target.value });
+  // };
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  // const handleClickShowPassword = () => {
+  //   setValues({
+  //     ...values,
+  //     showPassword: !values.showPassword,
+  //   });
+  // };
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  // const handleMouseDownPassword = (event) => {
+  //   event.preventDefault();
+  // };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  //REGISTRATION
+  const { registerNewUser } = useContext(LogInContext);
 
-  // LOG IN CODE
-
-  const { logIn, user, errorMessage } = useContext(LogInContext);
-
-  // can add useeffect if user --> navigate to profile
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerUsername, setRegisterUsername] = useState("");
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setRegisterEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setRegisterPassword(e.target.value);
+  };
+  const handleUsernameChange = (e) => {
+    setRegisterUsername(e.target.value);
   };
 
-  const handleLogIn = async () => {
-    const success = await logIn(email, password);
-    console.log(success);
-    console.log("test");
-    if (success) {
-      navigate("/profile");
-    }
+  const handleRegistration = () => {
+    registerNewUser(registerEmail, registerPassword, registerUsername);
   };
-  console.log(values);
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        height: "90%",
       }}
     >
       <Box
@@ -83,32 +77,48 @@ function Login() {
         autoComplete="off"
       >
         <TextField
-          value={email}
+          id="outlined-basic"
+          label="Your username"
+          variant="outlined"
+          color="action"
+          value={registerUsername}
+          onChange={handleUsernameChange}
+        />
+
+        <TextField
           id="outlined-basic"
           label="Your email"
           variant="outlined"
           color="action"
+          value={registerEmail}
           onChange={handleEmailChange}
         />
-        {/* <TextField
+        <TextField
           id="outlined-basic"
           label="Your password"
           variant="outlined"
           color="action"
-        /> */}
-        <FormControl
+          value={registerPassword}
+          onChange={handlePasswordChange}
+        />
+        {/* <FormControl
           sx={{ m: 1, width: "25ch" }}
           variant="outlined"
           color="action"
         >
           <InputLabel htmlFor="outlined-adornment-password">
-            Password
+            Choose a password
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={handlePasswordChange}
+            type={values.showPassword ? "text" : "password"}
+            value={values.password}
+            onChange={
+              (handleChange("password"),
+              (e) => {
+                setRegisterEmail(e.target.value);
+              })
+            }
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -117,33 +127,23 @@ function Login() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
-            label="Password"
+            label="Choose a password"
           />
-        </FormControl>
-        <Button variant="contained" color="primary" onClick={handleLogIn}>
-          LOG IN
-        </Button>
-        {errorMessage ? <p>{errorMessage}</p> : <p></p>}
-      </Box>
-      <p>
-        Don't have an account yet?{" "}
-        <Link
-          to="/register"
-          style={{
-            textDecoration: "none",
-            color: "#d500f9",
-            fontWeight: "bold",
-          }}
+        </FormControl> */}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleRegistration}
         >
-          <span> Register here</span>
-        </Link>
-      </p>
+          REGISTER
+        </Button>
+      </Box>
     </div>
   );
 }
 
-export default Login;
+export default Register;

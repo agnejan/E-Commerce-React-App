@@ -1,6 +1,14 @@
 .App {
   text-align: center;
-  height: 100vh;
+  /* height: 100vh; */
+  /* background-image: linear-gradient(
+    to right top,
+    #c8d29d73,
+    #ecbe837d,
+    #ffa68d77,
+    #ff8fbe7b,
+    #eb93ff6f
+  ); */
 }
 
 /* .App-logo {

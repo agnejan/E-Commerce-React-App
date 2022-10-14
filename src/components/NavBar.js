@@ -12,10 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { deepPurple } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 import { LogInContext } from "../context/logInContext";
 import { useContext } from "react";
+import { deepOrange, deepPurple } from "@mui/material/colors";
 
 const pages = [
   { text: "Home", route: "/home" },
@@ -30,13 +30,13 @@ const settingsLoggedIn = [
 
 const settingsNotLoggedIn = [
   { text: "Log In", route: "/login" },
-  { text: "Sign Up", route: "/signup" },
+  { text: "Register", route: "/register" },
 ];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { loggedIn } = useContext(LogInContext);
+  const { user } = useContext(LogInContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -163,7 +163,11 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{ bgcolour: "secondary" }}>AJ</Avatar>
+                {user ? (
+                  <Avatar sx={{ bgcolor: "#d500f9" }}> 👋</Avatar>
+                ) : (
+                  <Avatar></Avatar>
+                )}
               </IconButton>
             </Tooltip>
             <Menu
@@ -182,7 +186,7 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {loggedIn
+              {user
                 ? settingsLoggedIn.map((setting) => (
                     <Link
                       key={setting.text}

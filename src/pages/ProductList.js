@@ -33,7 +33,8 @@ function ProductList() {
         <Grid container spacing={3}>
           {products && // && means if character === true, it waits for products to be fetched before it maps them
             filteredProduct.map((product) => {
-              if (!filteredProduct) {
+              console.log(product);
+              if (!product) {
                 return (
                   <div>
                     Sorry, we don't seem to have anything to offer on this
