@@ -53,7 +53,7 @@ function Chat() {
     //     messagesArray.push(doc.data());
     //   });
     // });
-    const q = query(collection(db, "chat"), orderBy("date"), limitToLast("5"));
+    const q = query(collection(db, "chat"), orderBy("date"), limitToLast("8"));
     const querySnapshot = await getDocs(q);
 
     const messagesArray = [];
@@ -70,7 +70,11 @@ function Chat() {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        maxWidth: "500px",
+      }}
+    >
       {messages &&
         messages.map((text) => (
           <div
@@ -78,30 +82,54 @@ function Chat() {
               backgroundColor: "pink",
               borderRadius: "20px",
               margin: "15px",
+              padding: " 10px",
             }}
           >
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "flex-start",
+                alignItems: "center",
               }}
             >
-              <p style={{ fontWeight: "bold" }}>{text.user}</p>
-              <p style={{ fontSize: "small" }}>
+              <p style={{ margin: "0", marginLeft: "15px" }}>
+                <span style={{ fontWeight: "bold" }}>{text.user}</span> wrote:{" "}
+              </p>
+              <p
+                style={{
+                  fontSize: "10px",
+                  margin: "0",
+                  color: "grey",
+                  marginLeft: "10px",
+                }}
+              >
                 {text.date.toDate().toLocaleString("de")}
-              </p>{" "}
+              </p>
             </div>
-            <p>{text.text}</p>
+            <div style={{ display: "flex", flexWrap: "wrap", padding: "10px" }}>
+              <p style={{ margin: "0" }}>{text.text}</p>
+            </div>
           </div>
         ))}
-      <Box sx={{ "& button": { m: 1 } }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          columnGap: "2vw",
+          position: "sticky",
+          marginBottom: "3vh",
+        }}
+      >
         <TextField
           id="outlined-basic"
           label="Text..."
           variant="outlined"
           value={message}
           onChange={handleMessage}
+          style={{ width: "70%" }}
         />
         <Button
           variant="contained"
@@ -109,7 +137,7 @@ function Chat() {
           onClick={sendMessage}
           endIcon={<SendIcon />}
         ></Button>
-      </Box>
+      </div>
     </div>
   );
 }
