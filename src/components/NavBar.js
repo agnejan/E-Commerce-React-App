@@ -23,9 +23,10 @@ const pages = [
   { text: "Blog", route: "/blog" },
 ];
 const settingsLoggedIn = [
-  { text: "Profile", route: "/profile" },
-  { text: "My wishlist", route: "/wishlist" },
-  { text: "Logout", route: "/logout" },
+  { text: " 👤 Profile", route: "/profile" },
+  { text: " 💜 My wishlist", route: "/wishlist" },
+  { text: " 💬 Chat", route: "/chat" },
+  { text: " ❌ Logout", route: "/logout" },
 ];
 
 const settingsNotLoggedIn = [

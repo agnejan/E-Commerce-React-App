@@ -65,12 +65,14 @@ function Register() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        height: "80%",
       }}
     >
+      <h2>Register:</h2>
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
         }}
         noValidate
         autoComplete="off"
@@ -100,11 +102,7 @@ function Register() {
           value={registerPassword}
           onChange={handlePasswordChange}
         /> */}
-        <FormControl
-          sx={{ m: 1, width: "25ch" }}
-          variant="outlined"
-          color="action"
-        >
+        <FormControl sx={{ width: "25ch" }} variant="outlined" color="action">
           <InputLabel htmlFor="outlined-adornment-password">
             Choose a password
           </InputLabel>

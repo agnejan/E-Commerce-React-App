@@ -20,8 +20,9 @@ export const LogInContextProvider = (props) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         setUser(user);
+        // console.log(auth);
         // ...
         updateProfile(auth.currentUser, {
           displayName: username,
@@ -48,7 +49,7 @@ export const LogInContextProvider = (props) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         setUser(user);
         return true;
         //can add navigate functiin here and move context provider inside router
@@ -57,7 +58,7 @@ export const LogInContextProvider = (props) => {
       })
       .catch((error) => {
         setErrorMessage(error.message);
-        console.log(error);
+        // console.log(error);
         return false;
       });
   };
@@ -70,8 +71,8 @@ export const LogInContextProvider = (props) => {
     signOut(auth)
       .then(() => {
         setUser(null);
-        console.log(auth);
-        console.log(user);
+        // console.log(auth);
+        // console.log(user);
         // Sign-out successful.
       })
       .catch((error) => {
@@ -86,8 +87,8 @@ export const LogInContextProvider = (props) => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         // ...
         setUser(user);
-        console.log(user);
-        console.log(auth);
+        // console.log(user);
+        // console.log(auth);
       } else {
         setUser(null);
         // User is signed out

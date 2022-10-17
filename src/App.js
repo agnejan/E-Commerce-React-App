@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
+import Chat from "./pages/Chat";
 import { WishlistContextProvider } from "./context/wishlistContext";
 import { LogInContextProvider } from "./context/logInContext";
 import { LogInContext } from "./context/logInContext";
@@ -83,8 +84,9 @@ function App() {
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/profile" element={<Profile />}></Route>
                     <Route path="/logout" element={<Logout />}></Route>
+                    <Route path="/chat" element={<Chat />}></Route>
                   </Routes>
-                  <Footer />
+                  {/* <Footer /> */}
                 </div>
               </ThemeProvider>
             </BrowserRouter>

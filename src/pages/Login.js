@@ -67,13 +67,14 @@ function Login() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        height: "90%",
+        height: "80%",
       }}
     >
+      <h2>Log in:</h2>
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": { m: 1, width: "25ch", rowGap: "1" },
         }}
         noValidate
         autoComplete="off"
@@ -92,11 +93,7 @@ function Login() {
           variant="outlined"
           color="action"
         /> */}
-        <FormControl
-          sx={{ m: 1, width: "25ch" }}
-          variant="outlined"
-          color="action"
-        >
+        <FormControl sx={{ width: "25ch" }} variant="outlined" color="action">
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
