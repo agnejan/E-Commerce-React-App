@@ -53,13 +53,13 @@ function Chat() {
     //     messagesArray.push(doc.data());
     //   });
     // });
-    const q = query(collection(db, "chat"), orderBy("date"), limitToLast("8"));
+    const q = query(collection(db, "chat"), orderBy("date"), limitToLast("10"));
     const querySnapshot = await getDocs(q);
 
     const messagesArray = [];
     querySnapshot.forEach((doc) => {
-      console.log(doc.id);
-      console.log(doc.data);
+      // console.log(doc.id);
+      // console.log(doc.data);
       messagesArray.push(doc.data());
     });
     setMessages(messagesArray);
@@ -73,6 +73,8 @@ function Chat() {
     <div
       style={{
         maxWidth: "500px",
+        // height: "70%",
+        paddingBottom: "60px",
       }}
     >
       {messages &&
@@ -107,8 +109,24 @@ function Chat() {
                 {text.date.toDate().toLocaleString("de")}
               </p>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", padding: "10px" }}>
-              <p style={{ margin: "0" }}>{text.text}</p>
+            <div
+              style={{
+                display: "flex",
+                padding: "10px",
+                flexWrap: "wrap",
+                flexDirection: "column",
+              }}
+            >
+              <p
+                style={{
+                  margin: "0",
+                  flexWrap: "wrap",
+                  display: "flex",
+                  marginRight: "10px",
+                }}
+              >
+                {text.text}
+              </p>
             </div>
           </div>
         ))}
@@ -119,8 +137,10 @@ function Chat() {
           alignItems: "center",
           justifyContent: "center",
           columnGap: "2vw",
-          position: "sticky",
-          marginBottom: "3vh",
+          backgroundColor: "white",
+          position: "fixed",
+          bottom: "10px",
+          width: "100%",
         }}
       >
         <TextField

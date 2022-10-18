@@ -10,11 +10,13 @@ import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
 import { WishlistContext } from "../context/wishlistContext";
 import { useContext } from "react";
+import { LogInContext } from "../context/logInContext";
 
 // import Badge from "@mui/material/Badge";
 
 export default function ListItem(props) {
   const product = props.product;
+  const { user } = useContext(LogInContext);
 
   const { addToWishlist, wishListedProducts } = useContext(WishlistContext);
 
@@ -26,7 +28,7 @@ export default function ListItem(props) {
   };
 
   const handleAddToWishlist = () => {
-    addToWishlist(product);
+    user && addToWishlist(product);
   };
 
   // console.log(isWishListed());

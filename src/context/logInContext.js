@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  updateEmail,
 } from "firebase/auth";
 
 export const LogInContext = createContext();
@@ -49,7 +50,7 @@ export const LogInContextProvider = (props) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // console.log(user);
+        console.log(user);
         setUser(user);
         return true;
         //can add navigate functiin here and move context provider inside router
@@ -97,13 +98,47 @@ export const LogInContextProvider = (props) => {
     });
   };
 
+  const updateUserEmail = (newEmail) => {
+    updateEmail(auth.currentUser, newEmail)
+      .then(() => {
+        // Email updated!
+        // ...
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
+  };
+
+  const updateUserDisplayName = (newDisplayName) => {
+    updateProfile(auth.currentUser, {
+      displayName: newDisplayName,
+    })
+      .then(() => {
+        // Profile updated!
+        // ...
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
+  };
+
   useEffect(() => {
     checkIfUserIsLoggedIn();
   }, []);
 
   return (
     <LogInContext.Provider
-      value={{ logIn, registerNewUser, user, logOut, errorMessage }}
+      value={{
+        logIn,
+        registerNewUser,
+        user,
+        logOut,
+        errorMessage,
+        updateUserEmail,
+        updateUserDisplayName,
+      }}
     >
       {props.children}
     </LogInContext.Provider>
