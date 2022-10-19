@@ -1,24 +1,26 @@
+import { React, useState, useContext, useEffect } from "react";
+import { LogInContext } from "../context/logInContext";
 import ListItem from "../components/ListItem";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { useContext, useEffect } from "react";
-import { WishlistContext } from "../context/wishlistContext";
 
-function Wishlist() {
-  const { wishListedProducts } = useContext(WishlistContext);
-  console.log(wishListedProducts);
+function Cart() {
+  const { cart } = useContext(LogInContext);
+  console.log(cart);
+
+  const handleDeleteFromCart = () => {};
 
   return (
     <div>
-      <h2>My Wishlist 💜</h2>
-      {wishListedProducts.length > 0 ? (
+      <h2>My Cart 🛒</h2>
+      {cart.length > 0 ? (
         <Box sx={{ flexGrow: 1, marginTop: 3 }}>
           <Grid container spacing={3}>
             {" "}
-            {wishListedProducts.map((product) => {
+            {cart.map((item) => {
               return (
                 <Grid
-                  key={product.id}
+                  key={item.date}
                   item
                   xs={12}
                   sm={6}
@@ -26,7 +28,11 @@ function Wishlist() {
                   display="flex"
                   justifyContent="center"
                 >
-                  <ListItem product={product} />
+                  <ListItem
+                    product={item.product}
+                    deleteFromCart={handleDeleteFromCart}
+                    showDeleteButton={true}
+                  />
                 </Grid>
               );
             })}
@@ -42,11 +48,11 @@ function Wishlist() {
             alignItems: "center",
           }}
         >
-          <div>Seems like you don't have anything in your wishlist yet😮 </div>
+          <div>Seems like you don't have anything in your cart yet 😮 </div>
         </div>
       )}
     </div>
   );
 }
 
-export default Wishlist;
+export default Cart;

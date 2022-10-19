@@ -9,8 +9,9 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
 import { WishlistContext } from "../context/wishlistContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LogInContext } from "../context/logInContext";
+import RemoveButton from "./RemoveButton";
 
 // import Badge from "@mui/material/Badge";
 
@@ -20,6 +21,10 @@ export default function ListItem(props) {
 
   const { addToWishlist, wishListedProducts } = useContext(WishlistContext);
 
+  const handleAddToWishlist = () => {
+    user && addToWishlist(product);
+  };
+
   const isWishListed = () => {
     // console.log(product);
     const wished = wishListedProducts.filter((item) => item.id === product.id);
@@ -27,15 +32,21 @@ export default function ListItem(props) {
     return wished.length ? true : false;
   };
 
-  const handleAddToWishlist = () => {
-    user && addToWishlist(product);
-  };
-
-  // console.log(isWishListed());
+  // const isWishListed = useEffect(() => {
+  //   const func = () => {
+  //     // console.log(product);
+  //     const wished = wishListedProducts.filter(
+  //       (item) => item.id === product.id
+  //     );
+  //     // console.log(wished);
+  //     return wished.length ? true : false;
+  //   };
+  // }, [wishListedProducts]);
 
   return (
     <Card raised={true} sx={{ maxWidth: 345 }}>
       <CardActionArea>
+        {props.showDeleteButton && <RemoveButton></RemoveButton>}
         <CardMedia>
           {/* <Badge badgeContent={product.category} color="info" anchorOrigin={vertical:'bottom', horizontal:'left'}> */}
           <img
@@ -75,7 +86,7 @@ export default function ListItem(props) {
         </Button>
         <LikeButton
           onChange={handleAddToWishlist}
-          checked={isWishListed()}
+          checked={isWishListed()} // parentheses means calling at every render
         ></LikeButton>
       </CardActions>
     </Card>

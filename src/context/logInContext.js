@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { auth } from "../firebase-config";
+import { auth, db } from "../firebase-config";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -9,13 +9,27 @@ import {
   updateEmail,
 } from "firebase/auth";
 
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  onSnapshot,
+  orderBy,
+  limitToLast,
+  deleteDoc,
+} from "firebase/firestore";
+
 export const LogInContext = createContext();
 
 export const LogInContextProvider = (props) => {
   // const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
+  const [cart, setCart] = useState([]);
 
+  // REGISTER NEW USER
   const registerNewUser = (email, password, username) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -45,6 +59,7 @@ export const LogInContextProvider = (props) => {
       });
   };
 
+  // LOG IN
   const logIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -64,10 +79,7 @@ export const LogInContextProvider = (props) => {
       });
   };
 
-  // const logInSwitch = () => {
-  //   setLoggedIn(!loggedIn);
-  //   console.log(loggedIn);
-  // };
+  // LOG OUT
   const logOut = () => {
     signOut(auth)
       .then(() => {
@@ -80,7 +92,7 @@ export const LogInContextProvider = (props) => {
         // An error happened.
       });
   };
-
+  // CHECK IF USER IS LOGGED IN
   const checkIfUserIsLoggedIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -98,6 +110,11 @@ export const LogInContextProvider = (props) => {
     });
   };
 
+  useEffect(() => {
+    checkIfUserIsLoggedIn();
+  }, []);
+
+  // UPDATE USER EMAIL
   const updateUserEmail = (newEmail) => {
     updateEmail(auth.currentUser, newEmail)
       .then(() => {
@@ -109,7 +126,7 @@ export const LogInContextProvider = (props) => {
         // ...
       });
   };
-
+  // UPDATE DISPLAY NAME
   const updateUserDisplayName = (newDisplayName) => {
     updateProfile(auth.currentUser, {
       displayName: newDisplayName,
@@ -124,8 +141,42 @@ export const LogInContextProvider = (props) => {
       });
   };
 
+  // ADD TO CART DATABASE
+
+  const addToCart = async (product) => {
+    const cartObj = {
+      product: product,
+      date: new Date(),
+      user: user.email,
+    };
+    try {
+      const docRef = await addDoc(collection(db, "cart"), cartObj);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
+  // READ CART DATABASE
+  const readCart = async () => {
+    const q = query(collection(db, "cart"), orderBy("date", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    const cartArray = [];
+    querySnapshot.forEach((doc) => {
+      // console.log(doc.id);
+      // console.log(doc.data);
+      cartArray.push(doc.data());
+    });
+    setCart(cartArray);
+  };
+
+  // UPDATE CART DATABASE
+
+  // To continue from here
+
   useEffect(() => {
-    checkIfUserIsLoggedIn();
+    readCart();
   }, []);
 
   return (
@@ -138,6 +189,9 @@ export const LogInContextProvider = (props) => {
         errorMessage,
         updateUserEmail,
         updateUserDisplayName,
+        addToCart,
+        readCart,
+        cart,
       }}
     >
       {props.children}

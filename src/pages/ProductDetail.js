@@ -15,7 +15,7 @@ function ProductDetail() {
   let { id } = useParams();
   const [products, setProducts] = useState();
   const [ratingValue, setRatingValue] = React.useState(2);
-  const { loggedIn } = useContext(LogInContext);
+  const { user, addToCart } = useContext(LogInContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +27,10 @@ function ProductDetail() {
 
     fetchData();
   }, []);
+
+  const handleAddToCart = () => {
+    addToCart(products);
+  };
 
   return (
     products && (
@@ -70,8 +74,12 @@ function ProductDetail() {
               <h3>Price: ${products.price}</h3>
               <p style={{ fontWeight: "lighter" }}>{products.description}</p>
 
-              {loggedIn && (
-                <Button variant="contained" style={{ width: "50%" }}>
+              {user && (
+                <Button
+                  variant="contained"
+                  style={{ width: "50%" }}
+                  onClick={handleAddToCart}
+                >
                   Add to Cart <AddShoppingCartIcon></AddShoppingCartIcon>
                 </Button>
               )}

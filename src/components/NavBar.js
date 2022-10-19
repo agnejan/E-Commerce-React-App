@@ -25,6 +25,7 @@ const pages = [
 const settingsLoggedIn = [
   { text: " 👤 Profile", route: "/profile" },
   { text: " 💜 My wishlist", route: "/wishlist" },
+  { text: " 🛒 My Cart", route: "/cart" },
   { text: " 💬 Chat", route: "/chat" },
   { text: " ❌ Logout", route: "/logout" },
 ];

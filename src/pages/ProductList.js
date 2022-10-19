@@ -29,10 +29,10 @@ function ProductList() {
         {" "}
         X Clear Filters
       </Button>
-      <Box sx={{ flexGrow: 1, marginTop: 3 }}>
-        <Grid container spacing={3}>
-          {filteredProduct ? (
-            filteredProduct.map((product) => {
+      {filteredProduct.length > 0 ? (
+        <Box sx={{ flexGrow: 1, marginTop: 3 }}>
+          <Grid container spacing={3}>
+            {filteredProduct.map((product) => {
               return (
                 <Grid
                   key={product.id}
@@ -46,12 +46,22 @@ function ProductList() {
                   <ListItem product={product} />
                 </Grid>
               );
-            })
-          ) : (
-            <p>Sorry</p>
-          )}
-        </Grid>
-      </Box>
+            })}
+          </Grid>
+        </Box>
+      ) : (
+        <div
+          style={{
+            margin: "5px",
+            display: "flex",
+            height: "70vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div> Sorry, we don't have anything in this category 😢 </div>
+        </div>
+      )}
     </div>
   );
 }

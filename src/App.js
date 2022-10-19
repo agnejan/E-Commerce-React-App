@@ -21,6 +21,7 @@ import Chat from "./pages/Chat";
 import { WishlistContextProvider } from "./context/wishlistContext";
 import { LogInContextProvider } from "./context/logInContext";
 import { LogInContext } from "./context/logInContext";
+import Cart from "./pages/Cart";
 
 const theme = createTheme({
   palette: {
@@ -85,6 +86,7 @@ function App() {
                     <Route path="/profile" element={<Profile />}></Route>
                     <Route path="/logout" element={<Logout />}></Route>
                     <Route path="/chat" element={<Chat />}></Route>
+                    <Route path="/cart" element={<Cart />}></Route>
                   </Routes>
                   {/* <Footer /> */}
                 </div>
