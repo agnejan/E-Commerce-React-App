@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 
-export default function BasicButtons() {
+export default function BasicButtons(props) {
   const LightTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -16,7 +16,7 @@ export default function BasicButtons() {
   }));
   return (
     <LightTooltip title="remove" placement="top">
-      <Button variant="text" color="action">
+      <Button variant="text" color="action" onClick={props.onClick}>
         ✖
       </Button>
     </LightTooltip>

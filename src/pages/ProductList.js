@@ -19,7 +19,7 @@ function ProductList() {
     });
 
   return (
-    <div>
+    <div style={{ paddingBottom: "40px" }}>
       <Button
         style={{ marginTop: 20 }}
         onClick={clearFilter}

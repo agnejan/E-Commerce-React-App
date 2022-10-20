@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+
 import LikeButton from "./LikeButton";
 import { WishlistContext } from "../context/wishlistContext";
 import { useContext, useEffect } from "react";
@@ -17,7 +18,7 @@ import RemoveButton from "./RemoveButton";
 
 export default function ListItem(props) {
   const product = props.product;
-  const { user } = useContext(LogInContext);
+  const { user, removeCartItem } = useContext(LogInContext);
 
   const { addToWishlist, wishListedProducts } = useContext(WishlistContext);
 
@@ -30,6 +31,11 @@ export default function ListItem(props) {
     const wished = wishListedProducts.filter((item) => item.id === product.id);
     // console.log(wished);
     return wished.length ? true : false;
+  };
+
+  const handleRemoveFromCart = () => {
+    removeCartItem(user.email, product.id);
+    console.log("removeclicked");
   };
 
   // const isWishListed = useEffect(() => {
@@ -45,8 +51,10 @@ export default function ListItem(props) {
 
   return (
     <Card raised={true} sx={{ maxWidth: 345 }}>
+      {props.showDeleteButton && (
+        <RemoveButton onClick={handleRemoveFromCart}></RemoveButton>
+      )}
       <CardActionArea>
-        {props.showDeleteButton && <RemoveButton></RemoveButton>}
         <CardMedia>
           {/* <Badge badgeContent={product.category} color="info" anchorOrigin={vertical:'bottom', horizontal:'left'}> */}
           <img

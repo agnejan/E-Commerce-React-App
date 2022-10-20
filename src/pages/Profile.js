@@ -34,7 +34,7 @@ function Profile() {
         flexDirection: "column",
         justifyContent: "center",
         rowGap: "5vh",
-        height: "80%",
+        height: "80vh",
       }}
     >
       <p style={{ fontSize: "30px" }}>
@@ -51,6 +51,7 @@ function Profile() {
       >
         <p>Your username: {user.displayName}</p>
         <Button
+          style={{ marginLeft: "10px" }}
           color="action"
           size="small"
           variant="outlined"
@@ -69,6 +70,7 @@ function Profile() {
       >
         <p>Your email: {user.email}</p>
         <Button
+          style={{ marginLeft: "10px" }}
           color="action"
           size="small"
           variant="outlined"

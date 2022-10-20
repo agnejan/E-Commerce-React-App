@@ -82,6 +82,7 @@ function Chat() {
           <div
             style={{
               backgroundColor: "pink",
+              boxShadow: "0 2px 15px rgba(0, 0, 0, 0.3)",
               borderRadius: "20px",
               margin: "15px",
               padding: " 10px",
@@ -137,7 +138,7 @@ function Chat() {
           alignItems: "center",
           justifyContent: "center",
           columnGap: "2vw",
-          backgroundColor: "white",
+
           position: "fixed",
           bottom: "10px",
           width: "100%",
@@ -149,7 +150,7 @@ function Chat() {
           variant="outlined"
           value={message}
           onChange={handleMessage}
-          style={{ width: "70%" }}
+          style={{ width: "70%", backgroundColor: "white" }}
         />
         <Button
           variant="contained"

@@ -29,12 +29,12 @@ function ProductDetail() {
   }, []);
 
   const handleAddToCart = () => {
-    addToCart(products);
+    addToCart(products, user.email, products.id);
   };
 
   return (
     products && (
-      <Box sx={{ flexGrow: 1, marginTop: 5 }}>
+      <Box sx={{ flexGrow: 1, padding: 2 }}>
         <Grid container spacing={3}>
           <Grid
             item
@@ -45,7 +45,15 @@ function ProductDetail() {
             justifyContent="center"
           >
             <div className="image">
-              <img style={{ width: "50%" }} srcSet={products.image} />
+              <img
+                style={{
+                  width: "50%",
+                  borderRadius: "10px",
+                  border: "10px",
+                  boxShadow: "0 2px 15px rgba(0, 0, 0, 0.3)",
+                }}
+                srcSet={products.image}
+              />
             </div>
           </Grid>
           <Grid
@@ -77,7 +85,7 @@ function ProductDetail() {
               {user && (
                 <Button
                   variant="contained"
-                  style={{ width: "50%" }}
+                  style={{ width: "50%", marginBottom: "20px" }}
                   onClick={handleAddToCart}
                 >
                   Add to Cart <AddShoppingCartIcon></AddShoppingCartIcon>

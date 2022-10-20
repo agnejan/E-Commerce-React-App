@@ -5,16 +5,19 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 function Cart() {
-  const { cart } = useContext(LogInContext);
+  const { cart, user } = useContext(LogInContext);
+
   console.log(cart);
 
-  const handleDeleteFromCart = () => {};
+  // const handleDeleteFromCart = () => {
+  //   console.log("delete form cart clicked");
+  // };
 
   return (
     <div>
       <h2>My Cart 🛒</h2>
       {cart.length > 0 ? (
-        <Box sx={{ flexGrow: 1, marginTop: 3 }}>
+        <Box sx={{ flexGrow: 1, marginTop: 3, paddingBottom: 3 }}>
           <Grid container spacing={3}>
             {" "}
             {cart.map((item) => {
@@ -30,7 +33,7 @@ function Cart() {
                 >
                   <ListItem
                     product={item.product}
-                    deleteFromCart={handleDeleteFromCart}
+                    // deleteFromCart={handleDeleteFromCart}
                     showDeleteButton={true}
                   />
                 </Grid>

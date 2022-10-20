@@ -12,7 +12,7 @@ function Wishlist() {
     <div>
       <h2>My Wishlist 💜</h2>
       {wishListedProducts.length > 0 ? (
-        <Box sx={{ flexGrow: 1, marginTop: 3 }}>
+        <Box sx={{ flexGrow: 1, marginTop: 3, paddingBottom: 3 }}>
           <Grid container spacing={3}>
             {" "}
             {wishListedProducts.map((product) => {

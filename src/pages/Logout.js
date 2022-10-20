@@ -17,7 +17,7 @@ function Logout() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        height: "80%",
+        height: "80vh",
       }}
     >
       <Box

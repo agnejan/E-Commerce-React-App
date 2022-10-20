@@ -12,7 +12,7 @@ export const ProductsContextProvider = (props) => {
       setProducts(data);
     };
     !products && fetchData();
-  }, []); // check what this does
+  }, []); // this means that useeffect runs only the first time on intial render, but not on subsequent renders
 
   return (
     <ProductsContext.Provider value={{ products }}>

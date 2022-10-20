@@ -67,7 +67,7 @@ function Login() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        height: "80%",
+        height: "80vh",
       }}
     >
       <h2>Log in:</h2>
