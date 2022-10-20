@@ -170,6 +170,7 @@ export const LogInContextProvider = (props) => {
       product: product,
       date: new Date(),
     });
+    readCart();
     console.log("add-to-cart");
   };
 
@@ -201,6 +202,7 @@ export const LogInContextProvider = (props) => {
   const removeCartItem = async (userId, productId) => {
     const newProductId = productId.toString();
     await deleteDoc(doc(db, "cart", userId, "productId", newProductId));
+    readCart();
   };
 
   return (

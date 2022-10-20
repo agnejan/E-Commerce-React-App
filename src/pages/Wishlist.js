@@ -42,7 +42,7 @@ function Wishlist() {
             alignItems: "center",
           }}
         >
-          <div>Seems like you don't have anything in your wishlist yet😮 </div>
+          <div>Seems like you don't have anything in your wishlist yet 😮 </div>
         </div>
       )}
     </div>

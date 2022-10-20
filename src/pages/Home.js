@@ -28,7 +28,7 @@ function Home() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "91%",
+        height: "90vh",
       }}
     >
       <FilterBox
