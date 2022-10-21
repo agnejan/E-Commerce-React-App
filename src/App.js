@@ -1,5 +1,5 @@
 import "./App.css";
-// import List from "./components/List";
+
 import ProductList from "./pages/ProductList";
 import NavBar from "./components/NavBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -10,8 +10,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Footer from "./components/Footer";
 import { ProductsContextProvider } from "./context/productsContext";
 import { FilterContextProvider } from "./context/filterContext";
-import ToggleButton from "./components/ToggleButton";
-import { useContext } from "react";
+
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -41,20 +40,6 @@ const theme = createTheme({
 });
 
 function App() {
-  // const { logOut, auth, user } = useContext(LogInContext);
-  // const [filterValue, setFilterValue] = useState("all");
-  // // const [filterApplied, setFilterApplied] = useState(false);
-
-  // const filterCategory = (category) => {
-  //   console.log(category);
-  //   setFilterValue(category);
-  //   // setFilterApplied(true);
-  // };
-  // const handleLogOut = () => {
-  //   logOut();
-  //   console.log(user);
-  //   console.log(auth);
-  // };
   return (
     <WishlistContextProvider>
       <LogInContextProvider>
@@ -64,7 +49,6 @@ function App() {
               <ThemeProvider theme={theme}>
                 <div className="App">
                   <NavBar />
-                  {/* <ToggleButton /> */}
                   <Routes>
                     <Route
                       path="/home"

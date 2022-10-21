@@ -6,7 +6,6 @@ export const FilterContextProvider = (props) => {
   const [filterValue, setFilterValue] = useState("all");
 
   const filterCategory = (category) => {
-    // console.log(category);
     setFilterValue(category);
   };
 

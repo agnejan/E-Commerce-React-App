@@ -26,7 +26,6 @@ import {
 export const LogInContext = createContext();
 
 export const LogInContextProvider = (props) => {
-  // const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
   const [cart, setCart] = useState([]);
@@ -102,8 +101,6 @@ export const LogInContextProvider = (props) => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         // ...
         setUser(user);
-        // console.log(user);
-        // console.log(auth);
       } else {
         setUser(null);
         // User is signed out
@@ -144,22 +141,6 @@ export const LogInContextProvider = (props) => {
   };
 
   // ADD TO CART DATABASE
-
-  // const addToCart = async (product) => {
-  //   const cartObj = {
-  //     product: product,
-  //     date: new Date(),
-  //     user: user.email,
-  //   };
-  //   try {
-  //     const docRef = await addDoc(collection(db, "cart"), cartObj);
-  //     console.log("Document written with ID: ", docRef.id);
-  //   } catch (e) {
-  //     console.error("Error adding document: ", e);
-  //   }
-  // };
-
-  // V2
 
   const addToCart = async (product, userId, productId) => {
     console.log(product);

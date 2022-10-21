@@ -2,12 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import { LogInContext } from "../context/logInContext";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 
 function Profile() {
   const { user, updateUserEmail, updateUserDisplayName } =
     useContext(LogInContext);
-  // console.log(user);
 
   const handleUpdateEmail = () => {
     console.log("clicked");

@@ -8,8 +8,6 @@ function Logout() {
 
   const handleLogOut = () => {
     logOut();
-    // console.log(user);
-    // console.log(auth);
   };
   return (
     <div

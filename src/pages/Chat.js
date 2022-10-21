@@ -1,8 +1,5 @@
 import { React, useState, useContext, useEffect } from "react";
-
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { LogInContext } from "../context/logInContext";
@@ -46,13 +43,6 @@ function Chat() {
   };
 
   const readMessages = async () => {
-    // const q = await query(collection(db, "chat"));
-    // const messagesArray = [];
-    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     messagesArray.push(doc.data());
-    //   });
-    // });
     const q = query(collection(db, "chat"), orderBy("date"), limitToLast("10"));
     const querySnapshot = await getDocs(q);
 

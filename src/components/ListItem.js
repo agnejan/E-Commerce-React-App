@@ -1,4 +1,3 @@
-// import React from "react";
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,8 +13,6 @@ import { useContext, useEffect } from "react";
 import { LogInContext } from "../context/logInContext";
 import RemoveButton from "./RemoveButton";
 
-// import Badge from "@mui/material/Badge";
-
 export default function ListItem(props) {
   const product = props.product;
   const { user, removeCartItem } = useContext(LogInContext);
@@ -27,9 +24,7 @@ export default function ListItem(props) {
   };
 
   const isWishListed = () => {
-    // console.log(product);
     const wished = wishListedProducts.filter((item) => item.id === product.id);
-    // console.log(wished);
     return wished.length ? true : false;
   };
 

@@ -9,10 +9,6 @@ function Cart() {
 
   console.log(cart);
 
-  // const handleDeleteFromCart = () => {
-  //   console.log("delete form cart clicked");
-  // };
-
   return (
     <div>
       <h2>My Cart 🛒</h2>
@@ -31,11 +27,7 @@ function Cart() {
                   display="flex"
                   justifyContent="center"
                 >
-                  <ListItem
-                    product={item.product}
-                    // deleteFromCart={handleDeleteFromCart}
-                    showDeleteButton={true}
-                  />
+                  <ListItem product={item.product} showDeleteButton={true} />
                 </Grid>
               );
             })}
