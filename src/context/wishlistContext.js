@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const WishlistContext = createContext();
 
@@ -6,7 +6,7 @@ export const WishlistContextProvider = (props) => {
   const [wishListedProducts, setWishListedProducts] = useState([]);
 
   const addToWishlist = (product) => {
-    console.log(product);
+    // console.log(product);
     if (
       wishListedProducts.filter((item) => item.id === product.id).length > 0
     ) {
@@ -15,14 +15,14 @@ export const WishlistContextProvider = (props) => {
         (item) => item.id !== product.id
       );
       // removeProduct.splice(index, 1);
-      console.log(removeProduct);
+      // console.log(removeProduct);
       setWishListedProducts(removeProduct);
     } else {
       setWishListedProducts([...wishListedProducts, product]);
     }
   };
 
-  console.log(wishListedProducts);
+  // console.log(wishListedProducts);
 
   // const removeDuplicates = (arr) => {
   //   return [...new Set(arr)];

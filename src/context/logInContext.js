@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut,
   updateEmail,
+  getAuth,
 } from "firebase/auth";
 
 import {
@@ -85,16 +86,17 @@ export const LogInContextProvider = (props) => {
     signOut(auth)
       .then(() => {
         setUser(null);
-        // console.log(auth);
-        // console.log(user);
+
         // Sign-out successful.
       })
       .catch((error) => {
         // An error happened.
       });
   };
+
   // CHECK IF USER IS LOGGED IN
-  const checkIfUserIsLoggedIn = () => {
+
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -107,10 +109,6 @@ export const LogInContextProvider = (props) => {
         // ...
       }
     });
-  };
-
-  useEffect(() => {
-    checkIfUserIsLoggedIn();
   }, []);
 
   // UPDATE USER EMAIL
@@ -119,12 +117,17 @@ export const LogInContextProvider = (props) => {
       .then(() => {
         // Email updated!
         // ...
+        setUser((prev) => {
+          return { ...prev, email: newEmail };
+        });
+        // console.log(user);
       })
       .catch((error) => {
         // An error occurred
         // ...
       });
   };
+
   // UPDATE DISPLAY NAME
   const updateUserDisplayName = (newDisplayName) => {
     updateProfile(auth.currentUser, {
@@ -132,20 +135,22 @@ export const LogInContextProvider = (props) => {
     })
       .then(() => {
         // Profile updated!
-        // ...
+        // // ...
+        // console.log(user);
+        setUser((prev) => {
+          return { ...prev, displayName: newDisplayName };
+        }); // this forces the state update to show on user interface, not only in Firebase. Ask Lucas why this is needed?
       })
       .catch((error) => {
         // An error occurred
         // ...
       });
+    // console.log(user);
   };
 
   // ADD TO CART DATABASE
 
   const addToCart = async (product, userId, productId) => {
-    console.log(product);
-    console.log(userId);
-    console.log(productId);
     const newProductId = productId.toString();
     await setDoc(doc(db, "cart", userId, "productId", newProductId), {
       product: product,
@@ -169,9 +174,9 @@ export const LogInContextProvider = (props) => {
       // console.log(doc.data);
       cartArray.push(doc.data());
     });
-    console.log(cartArray);
+    // console.log(cartArray);
     setCart(cartArray);
-    console.log(cart);
+    // console.log(cart);
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LogInContext } from "../context/logInContext";
 import Button from "@mui/material/Button";
 
@@ -8,17 +8,17 @@ function Profile() {
     useContext(LogInContext);
 
   const handleUpdateEmail = () => {
-    console.log("clicked");
+    // console.log("clicked");
     let newEmail = prompt("Enter your new email address", "email@email.com");
     updateUserEmail(newEmail);
-    console.log(newEmail);
+    // console.log(newEmail);
   };
 
   const handleUpdateDisplayName = () => {
-    console.log("clicked");
+    // console.log("clicked");
     let newName = prompt("Enter your new display name", "e.g. Jane");
     updateUserDisplayName(newName);
-    console.log(newName);
+    // console.log(newName);
   };
 
   const handleUpdatePassword = () => {
@@ -89,7 +89,7 @@ function Profile() {
       </div>
     </div>
   ) : (
-    <p>not logged in</p>
+    <p>Fetching data</p>
   );
 }
 
