@@ -120,11 +120,10 @@ export const LogInContextProvider = (props) => {
         setUser((prev) => {
           return { ...prev, email: newEmail };
         });
-        // console.log(user);
+        console.log(user);
       })
       .catch((error) => {
-        // An error occurred
-        // ...
+        console.log(error.message);
       });
   };
 
@@ -136,7 +135,7 @@ export const LogInContextProvider = (props) => {
       .then(() => {
         // Profile updated!
         // // ...
-        // console.log(user);
+        console.log(user);
         setUser((prev) => {
           return { ...prev, displayName: newDisplayName };
         }); // this forces the state update to show on user interface, not only in Firebase. Ask Lucas why this is needed?
