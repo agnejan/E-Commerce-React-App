@@ -22,7 +22,7 @@ export const WishlistContextProvider = (props) => {
     }
   };
 
-  // console.log(wishListedProducts);
+  // console.log(wishListedProducts); //ignore//
 
   // const removeDuplicates = (arr) => {
   //   return [...new Set(arr)];

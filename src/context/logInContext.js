@@ -32,53 +32,113 @@ export const LogInContextProvider = (props) => {
   const [cart, setCart] = useState([]);
 
   // REGISTER NEW USER
-  const registerNewUser = (email, password, username) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // console.log(user);
-        setUser(user);
-        // console.log(auth);
-        // ...
-        updateProfile(auth.currentUser, {
-          displayName: username,
-          // photoURL: "https://example.com/jane-q-user/profile.jpg",
-        });
-        // .then(() => {
-        //   // Profile updated!
-        //   // ...
-        // })
-        // .catch((error) => {
-        //   // An error occurred
-        //   // ...
-        // });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        setErrorMessage(error.message);
-        console.log(error);
+  // .THEN CHAINING
+  // const registerNewUser = (email, password, username) => {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       // console.log(user);
+  //       setUser(user);
+  //       // console.log(auth);
+  //       // ...
+  //       updateProfile(auth.currentUser, {
+  //         displayName: username,
+  //         // photoURL: "https://example.com/jane-q-user/profile.jpg",
+  //       });
+  //       // .then(() => {
+  //       //   // Profile updated!
+  //       //   // ...
+  //       // })
+  //       // .catch((error) => {
+  //       //   // An error occurred
+  //       //   // ...
+  //       // });
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       setErrorMessage(error.message);
+  //       console.log(error);
+  //     });
+  // };
+
+  // ASYNC AWAIT
+  const registerNewUser = async (email, password, username) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      //  .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // console.log(user);
+      setUser(user);
+      // console.log(auth);
+      // ...
+      updateProfile(auth.currentUser, {
+        displayName: username,
+        // photoURL: "https://example.com/jane-q-user/profile.jpg",
       });
+      // .then(() => {
+      //   // Profile updated!
+      //   // ...
+      // })
+      // .catch((error) => {
+      //   // An error occurred
+      //   // ...
+      // });
+      //  })
+    } catch (error) {
+      const errorCode = error.code;
+      setErrorMessage(error.message);
+      console.log(error);
+    }
   };
 
   // LOG IN
-  const logIn = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        setUser(user);
-        return true;
-        //can add navigate functiin here and move context provider inside router
-        // rewrite this to async function
-        // ...
-      })
-      .catch((error) => {
-        setErrorMessage(error.message);
-        // console.log(error);
-        return false;
-      });
+  // .THEN CHAINING
+
+  // const logIn = (email, password) => {
+  //   return signInWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       console.log(user);
+  //       setUser(user);
+  //       return true;
+  //       //can add navigate functiin here and move context provider inside router
+  //       // rewrite this to async function
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       setErrorMessage(error.message);
+  //       // console.log(error);
+  //       return false;
+  //     });
+  // };
+
+  // ASYNC AWAIT
+  const logIn = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log(user);
+      setUser(user);
+      return true;
+      //can add navigate functiin here and move context provider inside router
+      // rewrite this to async function
+      // ...
+    } catch (error) {
+      setErrorMessage(error.message);
+      // console.log(error);
+      return false;
+    }
   };
 
   // LOG OUT
@@ -111,7 +171,8 @@ export const LogInContextProvider = (props) => {
     });
   }, []);
 
-  // UPDATE USER EMAIL
+  // UPDATE USER EMAIL //
+  // .THEN CHAINING
   const updateUserEmail = (newEmail) => {
     updateEmail(auth.currentUser, newEmail)
       .then(() => {
@@ -124,26 +185,66 @@ export const LogInContextProvider = (props) => {
       })
       .catch((error) => {
         console.log(error.message);
+        setErrorMessage(error.message);
       });
   };
 
+  // ASYNC AWAIT
+  // const updateUserEmail = async (newEmail) => {
+  //   try {
+  //     await updateEmail(auth.currentUser, newEmail);
+
+  //     // Email updated!
+  //     // ...
+  //     setUser((prev) => {
+  //       return { ...prev, email: newEmail };
+  //     });
+  //     console.log(user);
+  //   } catch (error) {
+  //     console.log(error.message);
+  // setErrorMessage(error.message);
+  //   }
+  // };
+
   // UPDATE DISPLAY NAME
-  const updateUserDisplayName = (newDisplayName) => {
-    updateProfile(auth.currentUser, {
-      displayName: newDisplayName,
-    })
-      .then(() => {
-        // Profile updated!
-        // // ...
-        console.log(user);
-        setUser((prev) => {
-          return { ...prev, displayName: newDisplayName };
-        }); // this forces the state update to show on user interface, not only in Firebase. Ask Lucas why this is needed?
-      })
-      .catch((error) => {
-        // An error occurred
-        // ...
+  // .THEN CHAINING
+  // const updateUserDisplayName = (newDisplayName) => {
+  //   updateProfile(auth.currentUser, {
+  //     displayName: newDisplayName,
+  //   })
+  //     .then(() => {
+  //       // Profile updated!
+  //       // // ...
+  //       console.log(user);
+  //       setUser((prev) => {
+  //         return { ...prev, displayName: newDisplayName };
+  //       }); // this forces the state update to show on user interface, not only in Firebase. Ask Lucas why this is needed?
+  //     })
+  //     .catch((error) => {
+  //       // An error occurred
+  //       // ...
+  //     });
+  //   // console.log(user);
+  // };
+
+  // ASYNC AWAIT
+  const updateUserDisplayName = async (newDisplayName) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: newDisplayName,
       });
+
+      // Profile updated!
+      // // ...
+      console.log(user);
+      setUser((prev) => {
+        return { ...prev, displayName: newDisplayName };
+      }); // this forces the state update to show on user interface, not only in Firebase. Ask Lucas why this is needed?
+    } catch (error) {
+      // An error occurred
+      // ...
+      setErrorMessage(error.message);
+    }
     // console.log(user);
   };
 

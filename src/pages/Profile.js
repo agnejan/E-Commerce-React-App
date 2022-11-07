@@ -4,7 +4,7 @@ import { LogInContext } from "../context/logInContext";
 import Button from "@mui/material/Button";
 
 function Profile() {
-  const { user, updateUserEmail, updateUserDisplayName } =
+  const { user, updateUserEmail, updateUserDisplayName, errorMessage } =
     useContext(LogInContext);
 
   const handleUpdateEmail = () => {
@@ -87,6 +87,11 @@ function Profile() {
           Change your password
         </Button>
       </div>
+      {errorMessage ? (
+        <p style={{ color: "red" }}> {errorMessage} 😢 Try again!</p>
+      ) : (
+        <p></p>
+      )}
     </div>
   ) : (
     <p>Fetching data</p>
